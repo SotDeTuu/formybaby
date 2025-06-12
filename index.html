@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For You</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffc0cb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+    }
+
+    #box {
+      width: 200px;
+      height: 200px;
+      background: #89c9ff;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+    #box:hover {
+      background: #5599ee;
+    }
+
+    #flowers {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      z-index: 10;
+      position: relative;
+    }
+
+    #flowers img {
+      width: 150px;
+      margin: 10px;
+      border-radius: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    #flowers img:hover {
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 20px;
+      color: #155a99;
+      font-weight: 600;
+    }
+
+    /* Center the love letter box horizontally */
+    #loveLetter {
+      margin: 20px auto 0 auto; /* top 20px, left & right auto */
+      padding: 15px;
+      background: #fff0f5;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      color: #c94b9b;
+      font-size: 16px;
+      max-width: 300px;
+      line-height: 1.5;
+      display: none;
+      text-align: left;
+    }
+
+    .heart {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background-color: #ff6b81;
+      transform: rotate(45deg);
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      opacity: 0.8;
+      z-index: 5;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #ff6b81;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+    .heart::after {
+      top: 0;
+      left: 7.5px;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20px) rotate(45deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="box">Tap Me 💙</div>
+
+  <div id="flowers">
+    <img id="flowerImage" src="download.jpg" alt="Blue Flower 1" />
+    <div id="message">This bouquet with loves is for you my bae.
+      Touch it Touch it!💋</div>
+    <div id="loveLetter">
+      <p>
+       Dear Jue Jue San,<br><br>
+
+I’m not writing this to ask you to say yes, or to make you feel pressured.<br><br>
+
+I just want to let you know how I truly feel — without expecting anything in return.<br><br>
+
+I’ve thought a lot about what you said. I understand that you’re busy, and I respect your decision.<br>
+But even after hearing your answer, my feelings haven’t changed.<br>
+I still care about you. I still admire you. And I still want the best for you — even if I’m not part of that picture right now.<br><br>
+
+This isn’t about trying to win you over.<br>
+This is about me being honest — because you deserve honesty.<br><br>
+
+I’m not perfect. I’ve made mistakes, and I’m still learning.<br>
+But one thing is true: my feelings for you came from a sincere place.<br>
+Even when it hurts, I’m glad I felt this way, because it reminded me how deeply I can care.<br><br>
+
+You don’t have to respond to this.<br>
+You don’t owe me anything.<br>
+Just know that somewhere out there, someone is silently wishing you peace, strength, and happiness — always.<br><br>
+
+Take your time with life. Take care of yourself.<br>
+And no matter where we both end up…<br>
+I’ll be okay. And I’ll always wish the best for you.<br><br>
+
+With quiet care,<br>
+Aung Oak Soe
+
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const box = document.getElementById('box');
+    const flowers = document.getElementById('flowers');
+    const flowerImage = document.getElementById('flowerImage');
+    const loveLetter = document.getElementById('loveLetter');
+    let changed = false;
+
+    box.addEventListener('click', () => {
+      box.style.display = 'none';
+      flowers.style.display = 'block';
+    });
+
+    flowerImage.addEventListener('click', () => {
+      if (!changed) {
+        flowerImage.src = 'download.jpg'; // Make sure you have this image!
+        loveLetter.style.display = 'block';
+        changed = true;
+      }
+    });
+
+    // Falling hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+      heart.style.opacity = (0.4 + Math.random() * 0.6).toFixed(2);
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
